@@ -35,7 +35,7 @@ exports.postUser = async (req, res) => {
                 if (!token) {
                     return res.status(400).json({ error: 'Failed to create token' })
                 }
-                const url = process.env.FRONTEND_URL+'\/email\/confirmation\/'+token.token
+                const url = process.env.FRONTEND_URL + '\/email\/confirmation\/' + token.token
                 //send Email
                 sendEmail({
                     from: 'no-reply@ecommercestore.com',
@@ -46,7 +46,7 @@ exports.postUser = async (req, res) => {
                     `,
                     html: `
                     <h1>Verify Your Email<h1>
-                    <a href = '${url}'>click to verify`
+                    <a href = '${url}'>click to verify</a>`
                 })
                 res.send(user)
             }
@@ -147,7 +147,7 @@ exports.forgetPassword = async (req, res) => {
         return res.status(400).josn({ error: 'failed to create the token , process terminated' })
     }
 
-    const url = process.env.FRONTEND_URL+'\/reset\/password\/'+token.token
+    const url = process.env.FRONTEND_URL + '\/reset\/password\/' + token.token
     //sendEmail
     sendEmail({
         from: 'no-reply@ecommercestore.com',
@@ -156,7 +156,7 @@ exports.forgetPassword = async (req, res) => {
         text: `Hello \n please reset your password by click in the below link \n\n
         http://${req.headers.host}/api/conformation/${token.token}
         `,
-        html:  `
+        html: `
         <h1>Reset Your password<h1>
         <a href = '${url}'>click to reset password </a>`
     })
